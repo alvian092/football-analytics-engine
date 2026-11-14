@@ -50,3 +50,41 @@ streamlit run app/dashboard.py
 6. Use **NO BET** when data quality is weak, the model is uncalibrated, or estimated value is not positive after uncertainty and costs.
 
 All outputs are estimates. This software does not guarantee profit and should initially be used in research/paper-trading mode.
+
+
+## Import manually downloaded Football-Data.co.uk CSVs
+
+Football-Data.co.uk provides season-by-season CSV files for private personal
+betting analysis and academic research. Its published fair-use policy permits
+manual downloads or at most light automated downloads (no more than twice per
+week); this project therefore **does not scrape or download files**. Download
+the CSVs manually from https://football-data.co.uk/downloadm.php and keep the
+original files in a folder, for example:
+
+```text
+data/raw/football-data/
+  1011/
+    E0.csv
+    E1.csv
+  1112/
+    E0.csv
+    E1.csv
+```
+
+The importer also accepts filenames such as `E0_1011.csv`. It converts
+Football-Data columns (`Date`, `HomeTeam`, `AwayTeam`, `FTHG`, `FTAG`)
+to the engine schema, drops unplayed fixtures with both scores blank, retains
+the original statistics/odds columns, and records the source file and source.
+Files must contain their season code in the filename or parent folder.
+
+```bash
+python import_football_data.py --input-dir data/raw/football-data --output data/raw/matches.csv
+python run_backtest.py --input data/raw/matches.csv
+```
+
+League code mapping currently covers the main European divisions listed in
+Football-Data's archive. Other division codes are retained as
+`Football-Data <code>` and should be reviewed before analysis. Historical
+coverage and odds/statistics columns vary by competition and season. Do not
+treat missing odds or statistics as zero. Keep original CSVs as source records
+and check the provider's current terms before each data collection.
