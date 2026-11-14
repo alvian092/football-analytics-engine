@@ -76,8 +76,9 @@ def walk_forward_backtest(
     for fixture in frame.itertuples(index=False):
         cutoff = fixture.date
         training = frame.loc[frame["date"] < cutoff].copy()
+        league_training = training.loc[training["competition"] == fixture.competition].copy()
         prediction = predict_fixture(
-            training,
+            league_training,
             fixture.home_team,
             fixture.away_team,
             cutoff,
@@ -96,7 +97,7 @@ def walk_forward_backtest(
         probs = prediction["probabilities"]
         model_probs = np.array([probs[key] for key in OUTCOMES], dtype=float)
         model_probs = model_probs / model_probs.sum()
-        baseline = _smoothed_baseline(training, baseline_alpha)
+        baseline = _smoothed_baseline(league_training, baseline_alpha)
         baseline_probs = np.array([baseline[key] for key in OUTCOMES], dtype=float)
         actual = _actual_outcome(int(fixture.home_goals), int(fixture.away_goals))
         one_hot = np.array([1.0 if key == actual else 0.0 for key in OUTCOMES])
