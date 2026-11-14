@@ -4,7 +4,7 @@ A data-first pre-match football analytics project. The first milestone is a tran
 
 ## Initial scope
 
-- Independent home/away goal expectations (lambdas) supplied by the analyst.
+- Historical home/away attack and defence strengths with recency weighting and shrinkage.\n- Automatic pre-match lambda estimates using only matches dated before the fixture cutoff.
 - Poisson scoreline matrix with optional Dixon–Coles low-score correction.
 - Derived 1X2, BTTS, and goal-total probabilities.
 - Fair odds, expected value, and Kelly calculations for simple binary outcomes.
@@ -12,7 +12,7 @@ A data-first pre-match football analytics project. The first milestone is a tran
 
 ## Project status
 
-**Milestone 0 — foundation.** This repository currently contains the calculation core and starter interface. It does not yet fetch live data, estimate lambdas from historical matches, price Asian quarter-lines, or claim validated betting performance.
+**Milestone 1 — historical lambda estimator (initial).** The engine now includes a transparent, recency-weighted home/away strength estimator with shrinkage toward competition averages, strict pre-match date filtering, and minimum-history safeguards. It does not fetch live data, price Asian quarter-lines, or claim validated betting performance.
 
 ## Run locally
 
@@ -27,7 +27,7 @@ streamlit run app/dashboard.py
 
 ## Model use and validation
 
-1. Treat lambdas as model inputs, not facts. Record how each estimate was produced.
+1. Treat estimated lambdas as model outputs, not facts. Record cutoff date, competition, sample sizes, and estimator settings.
 2. Never train or evaluate using information that was unavailable at the prediction timestamp.
 3. Keep chronological train/test splits; do not randomly shuffle time-series match data.
 4. Evaluate probability quality with Brier score, log loss, and calibration—not accuracy alone.
