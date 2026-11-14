@@ -8,11 +8,14 @@ A data-first pre-match football analytics project. The first milestone is a tran
 - Automatic pre-match lambda estimates using only matches dated before the fixture cutoff.
 - Poisson scoreline matrix with optional Dixon–Coles low-score correction.
 - One-call pre-match prediction pipeline joining historical lambda estimation and score probabilities.
+- Chronological walk-forward backtesting with strict same-day/future-data exclusion and comparison against a smoothed historical 1X2 baseline.
 - Derived 1X2, BTTS, and goal-total probabilities.
 - Fair odds, expected value, and Kelly calculations for simple binary outcomes.
 - Automated unit tests and a Streamlit starter dashboard.
 
 ## Project status
+
+**Milestone 2 — initial walk-forward backtest.** The engine can now evaluate chronological 1X2 forecasts, skip fixtures without enough prior history, and compare Brier Score / Log Loss against a smoothed historical-frequency baseline. This is an evaluation framework, not evidence of predictive edge or profitability.
 
 **Milestone 1 — historical lambda estimator (initial).** The engine now includes a transparent, recency-weighted home/away strength estimator with shrinkage toward competition averages, strict pre-match date filtering, and minimum-history safeguards. It does not fetch live data, price Asian quarter-lines, or claim validated betting performance.
 
