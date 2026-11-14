@@ -40,6 +40,7 @@ def test_negative_goals_fail():
 
 def test_fractional_goals_fail():
     frame = sample()
+    frame["home_goals"] = frame["home_goals"].astype(float)
     frame.loc[0, "home_goals"] = 1.5
     with pytest.raises(MatchDataError, match="whole numbers"):
         validate_matches(frame)
