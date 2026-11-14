@@ -88,3 +88,13 @@ Football-Data's archive. Other division codes are retained as
 coverage and odds/statistics columns vary by competition and season. Do not
 treat missing odds or statistics as zero. Keep original CSVs as source records
 and check the provider's current terms before each data collection.
+
+## Google Colab workflow (Android-friendly)
+
+Open the private-data loader notebook in Google Colab:
+
+[Open Football Analytics Engine data loader in Colab](https://colab.research.google.com/github/alvian092/football-analytics-engine/blob/main/notebooks/Football_Analytics_Engine_Private_Data_Loader.ipynb)
+
+The notebook mounts the user's Google Drive, downloads one season archive per run from the official Football-Data.co.uk archive, stores raw files in the user's private Drive, normalizes all collected seasons, and runs the walk-forward backtest. It enforces a maximum of two automated archive downloads in any rolling seven-day period. Start with season code `1011`; subsequent codes are `1112`, `1213`, ..., `2627`.
+
+Do not publish or upload the provider's raw CSV/ZIP files to this public repository. Keep the Drive folder private and use the data only in accordance with the provider's current personal-use/fair-use terms. The notebook does not promise predictive edge or profitability.
