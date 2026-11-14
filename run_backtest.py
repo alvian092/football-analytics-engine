@@ -69,7 +69,16 @@ def main(argv: list[str] | None = None) -> int:
     # write a header-only file rather than fabricating forecast rows.
     import pandas as pd
 
-    pd.DataFrame(result["predictions"]).to_csv(predictions_path, index=False)
+    prediction_columns = [
+        "date", "competition", "home_team", "away_team", "home_goals",
+        "away_goals", "actual", "historical_matches", "home_win_probability",
+        "draw_probability", "away_win_probability",
+        "baseline_home_win_probability", "baseline_draw_probability",
+        "baseline_away_win_probability",
+    ]
+    pd.DataFrame(
+        result["predictions"], columns=prediction_columns
+    ).to_csv(predictions_path, index=False)
     summary = {key: value for key, value in result.items() if key != "predictions"}
     summary["input_file"] = str(input_path)
     summary["competition_filter"] = args.competition
