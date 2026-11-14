@@ -4,8 +4,10 @@ A data-first pre-match football analytics project. The first milestone is a tran
 
 ## Initial scope
 
-- Historical home/away attack and defence strengths with recency weighting and shrinkage.\n- Automatic pre-match lambda estimates using only matches dated before the fixture cutoff.
+- Historical home/away attack and defence strengths with recency weighting and shrinkage.
+- Automatic pre-match lambda estimates using only matches dated before the fixture cutoff.
 - Poisson scoreline matrix with optional Dixon–Coles low-score correction.
+- One-call pre-match prediction pipeline joining historical lambda estimation and score probabilities.
 - Derived 1X2, BTTS, and goal-total probabilities.
 - Fair odds, expected value, and Kelly calculations for simple binary outcomes.
 - Automated unit tests and a Streamlit starter dashboard.
