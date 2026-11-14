@@ -54,8 +54,9 @@ def test_estimator_excludes_same_day_and_future_matches():
         history(), "Home FC", "Away FC", "2025-03-01",
         competition="Test League", min_league_matches=1, min_team_matches=1,
     )
-    assert result["historical_matches"] < 38
-    assert result["status"] == "insufficient_data"
+    assert result["historical_matches"] == 30
+    assert result["status"] == "ok"
+    assert result["lambda_home"] is not None
 
 
 def test_estimator_requires_sufficient_league_history():
