@@ -19,6 +19,16 @@ A data-first pre-match football analytics project. The first milestone is a tran
 
 **Milestone 1 — historical lambda estimator (initial).** The engine now includes a transparent, recency-weighted home/away strength estimator with shrinkage toward competition averages, strict pre-match date filtering, and minimum-history safeguards. It does not fetch live data, price Asian quarter-lines, or claim validated betting performance.
 
+## Run a walk-forward backtest
+
+Prepare a CSV using the columns in `data/raw/matches_template.csv` (the xG columns are optional), then run:
+
+```bash
+python run_backtest.py --input data/raw/matches.csv --competition "Premier League"
+```
+
+The command writes `data/processed/backtest/metrics.json` and `predictions.csv`. Omit `--competition` to evaluate each competition separately within its own history. The default minimum history is 30 earlier league matches and 3 relevant home/away matches per team; early fixtures are skipped rather than guessed. Use a sufficiently large, correctly licensed historical dataset before interpreting the metrics. Synthetic test fixtures only verify software behavior.
+
 ## Run locally
 
 ```bash
